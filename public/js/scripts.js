@@ -1,0 +1,1 @@
+/* All browser side scripts run here */
