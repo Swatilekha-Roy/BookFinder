@@ -1,1 +1,132 @@
-/* External Stylesheet */
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Quicksand:wght@500&display=swap');
+
+/* Body styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Dancing Script', cursive;
+}
+
+
+/* Main Content */
+.main-content {
+    min-height: 90vh;
+    margin-bottom: -57px;
+}
+
+.main-content:after {
+    content: "";
+    display: block;
+    height: 57px;
+}
+
+
+/* Navbar */
+nav {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.nav-link {
+    color: #b3b3b3 !important;
+    margin: auto 1rem;
+    font-weight: 400;
+}
+
+.nav-link:hover,.nav-link:focus,.nav-link:active,.nav-link-active {
+    color: #f1f1f1 !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-collapse {
+    margin-left: 115px;
+}
+
+.nav-brand {
+    margin-left: 4%;
+}
+
+.nav-brand-img {
+    width: 250px;
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .nav-item {
+        margin-top: 1%;
+    }
+
+    .nav-brand-img {
+        width: 160px;
+    }
+
+    .nav-brand {
+        margin-left: 1%;
+    }
+}
+
+
+/* Scroll to top arrow */
+#return-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #92a3c5e8;
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#return-to-top:hover {
+    background: #92a3c5;
+}
+
+#return-to-top:hover i {
+    top: 5px;
+}
+
+
+/* Footer */
+footer {
+    margin-top: 5%;
+    height: 57px;
+    background-color: rgb(59, 58, 58);
+    font-size: 1.2rem;
+}
