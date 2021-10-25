@@ -27,6 +27,11 @@ app.get("/", function (req, res) {
   res.render("index", { currentUser: req.user });
 });
 
+// Booklist Page rendering
+app.get("/booklist", function (req, res) {
+  res.render("booklist", { currentUser: req.user });
+});
+
 // Ports
 var PORT = process.env.PORT || 3000;
 
