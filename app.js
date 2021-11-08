@@ -2,39 +2,61 @@
 require("dotenv").config({ path: ".env" });
 const express = require("express");
 const mongoose = require("mongoose");
-var bodyParser = require("body-parser");
+const bodyparser = require("body-parser");
 const ejs = require("ejs");
 
 // Intialize the app
 const app = express();
 
-// Create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
-app.use(urlencodedParser);
+// Body-parser middleware
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 
 // Template engine
 app.set("view engine", "ejs");
-
-// For parsing application/json
-app.use(bodyParser.json());
 
 // Loading static files
 app.use(express.static("public"));
 app.use(express.static("views"));
 
+// Database user ids
+var mongo_username = process.env.MONGO_USERNAME;
+var mongo_password = process.env.MONGO_PASSWORD;
+
+// MongoDB Atlas Connect
+mongoose.connect(
+  `mongodb+srv://${mongo_username}:${mongo_password}@cluster0.gwzm7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
 // Homepage rendering
-app.get("/", function (req, res) {
-  res.render("index", { currentUser: req.user });
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+// Add Book Page rendering
+app.get("/addbook", (req, res) => {
+  res.render("addbook");
+});
+
+// Add Book Page Form Data Posting
+app.post("/addbook", (req, res) => {
+  console.log(req.body);
+  res.redirect("/addbook");
 });
 
 // Booklist Page rendering
-app.get("/booklist", function (req, res) {
-  res.render("booklist", { currentUser: req.user });
+app.get("/booklist", (req, res) => {
+  res.render("booklist");
 });
 
 // Ports
 var PORT = process.env.PORT || 3000;
 
+// Running App on Port
 app.listen(PORT, () => {
   console.log(`Server Running on Port ${PORT}`);
 });

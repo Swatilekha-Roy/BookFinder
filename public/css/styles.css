@@ -40,7 +40,7 @@ nav {
     font-weight: 400;
 }
 
-.nav-link:hover,.nav-link:focus,.nav-link:active,.nav-link-active {
+.nav-link:hover,.nav-link:focus,.nav-link:active {
     color: #f1f1f1 !important;
 }
 
@@ -84,7 +84,7 @@ nav {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #92a3c5e8;
+    background: #afb2b9e8;
     width: 50px;
     height: 50px;
     display: block;
@@ -115,7 +115,7 @@ nav {
 }
 
 #return-to-top:hover {
-    background: #92a3c5;
+    background: #939599;
 }
 
 #return-to-top:hover i {
@@ -129,4 +129,25 @@ footer {
     height: 57px;
     background-color: rgb(59, 58, 58);
     font-size: 1.2rem;
+}
+
+
+/* Form Container */
+.form-container {
+    margin-top: 10%;
+    max-width: 500px;
+}
+
+.index_btn {
+    float: right;
+    margin-top: 1%;
+    background-color: rgb(59, 58, 58);
+    color: #fff;
+    outline: none !important;
+    box-shadow: none;
+    border: none !important;
+}
+
+label {
+    margin-top: 2%;
 }
