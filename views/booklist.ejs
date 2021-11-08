@@ -2,7 +2,23 @@
 <%- include('partials/header') %>
 
 <!-- Main Content -->
-<div class="main-content"></div>
+<div class="main-content">
+  <div class="container" style="margin-top: 5%">
+    <div class="row">
+      <% book.forEach(function(book){ %>
+      <div class="col-12 col-md-3 flex-top" style="display: flex; margin: 2%">
+        <strong><h5 style="font-weight: 800"><%= book.title %></h5></strong>
+        <p style="line-height: 30px">
+          Written by <strong><%= book.author %></strong>
+        </p>
+        <p style="line-height: 30px">
+          Published: <strong><%= book.date %></strong>
+        </p>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
 
 <!-- Fetch Footer -->
 <%- include('partials/footer') %>

@@ -42,11 +42,7 @@ app.get("/", (req, res) => {
 
 // Add Book Page rendering
 app.get("/addbook", (req, res) => {
-  Book.find({}, (err, book) => {
-    res.render("addbook", {
-      book: book,
-    });
-  });
+  res.render("addbook");
 });
 
 // Add Book Page Form Data Posting
@@ -63,7 +59,11 @@ app.post("/addbook", (req, res) => {
 
 // Booklist Page rendering
 app.get("/booklist", (req, res) => {
-  res.render("booklist");
+  Book.find({}, (err, book) => {
+    res.render("booklist", {
+      book: book,
+    });
+  });
 });
 
 // Ports
