@@ -11,4 +11,5 @@ var bookSchema = new mongoose.Schema({
     type: String,
   },
 });
+
 module.exports = mongoose.model("Post", bookSchema);

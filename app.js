@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const ejs = require("ejs");
 
+// Fetching the model
+const Book = require("./db/book");
+
 // Intialize the app
 const app = express();
 
@@ -39,13 +42,23 @@ app.get("/", (req, res) => {
 
 // Add Book Page rendering
 app.get("/addbook", (req, res) => {
-  res.render("addbook");
+  Book.find({}, (err, book) => {
+    res.render("addbook", {
+      book: book,
+    });
+  });
 });
 
 // Add Book Page Form Data Posting
 app.post("/addbook", (req, res) => {
-  console.log(req.body);
+  const book = new Book({
+    title: req.body.title,
+    author: req.body.author,
+    date: req.body.date,
+  });
+  book.save();
   res.redirect("/addbook");
+  console.log(req.body);
 });
 
 // Booklist Page rendering
