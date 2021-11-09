@@ -174,11 +174,13 @@ footer {
 .index_btn {
     float: right;
     margin-top: 1%;
-    background-color: rgb(59, 58, 58);
+    background-color: rgb(94, 90, 90);
     color: #fff;
     outline: none !important;
     box-shadow: none;
     border: none !important;
+    padding: auto 2%;
+    border-radius: 6px;
 }
 
 label {
@@ -193,4 +195,21 @@ label {
     display: flex;
     margin: 3% 2%;
     min-width: 320px;
+    border-radius: 10px;
+}
+
+.search_btn {
+    background-color: rgb(94, 90, 90);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    padding: auto 2%;
+    border-radius: 6px;
+    outline: none !important;
+    box-shadow: none;
+    border: none !important;
+}
+
+.search_btn:hover,.search_btn:active,.search_btn:focus,.index_btn:hover,.index_btn:focus,.index_btn:active {
+    background-color: rgb(61, 60, 60);
 }

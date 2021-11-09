@@ -67,6 +67,12 @@ app.get("/booklist", (req, res) => {
   });
 });
 
+// Add Booklist Page Search Query Post
+app.post("/booklist", (req, res) => {
+  console.log(req.body.booksearch);
+  res.redirect("/booklist");
+});
+
 // Ports
 var PORT = process.env.PORT || 3000;
 
