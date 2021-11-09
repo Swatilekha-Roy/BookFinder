@@ -15,7 +15,7 @@ $("#return-to-top").click(function () {
   );
 });
 
-// Data Picker Initialization
+// Data Picker
 $(function () {
   var bindDatePicker = function () {
     $(".date")

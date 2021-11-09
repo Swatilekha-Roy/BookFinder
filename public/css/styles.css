@@ -13,14 +13,14 @@ body {
 
 /* Main Content */
 .main-content {
-    min-height: 90vh;
-    margin-bottom: -57px;
+    min-height: 70vh;
+    margin-bottom: -50px;
 }
 
 .main-content:after {
     content: "";
     display: block;
-    height: 57px;
+    height: 30vh;
 }
 
 
@@ -62,6 +62,13 @@ nav {
 .nav-brand-img {
     width: 250px;
     
+}
+
+.navbar-toggler-icon {
+    margin: 1% !important;
+    background-color: #e5e2e2 !important;
+    padding: 1.8%;
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -125,16 +132,42 @@ nav {
 
 /* Footer */
 footer {
-    margin-top: 5%;
+    margin-top: 4.1%;
     height: 57px;
     background-color: rgb(59, 58, 58);
     font-size: 1.2rem;
 }
 
+@media screen and (max-width: 600px)
+{
+    footer {
+        position: sticky;
+    }
+}
+
+
+/* Top content responsive */
+.top-con {
+    margin-top: 10%;
+}
+
+@media screen and (max-width: 1200px)
+{
+    .top-con {
+        margin-top: 15%;
+    }
+}
+
+@media screen and (max-width: 600px)
+{
+    .top-con {
+        margin-top: 30%;
+    }
+}
+
 
 /* Form Container */
 .form-container {
-    margin-top: 10%;
     max-width: 500px;
 }
 
@@ -150,4 +183,14 @@ footer {
 
 label {
     margin-top: 2%;
+}
+
+
+/* Book Cards */
+.book-card {
+    padding-top: 15px;
+    padding-left: 15px;
+    display: flex;
+    margin: 3% 2%;
+    min-width: 320px;
 }
