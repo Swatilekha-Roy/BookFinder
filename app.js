@@ -51,6 +51,7 @@ app.post("/addbook", (req, res) => {
     title: req.body.title,
     author: req.body.author,
     date: req.body.date,
+    color: req.body.color,
   });
   book.save();
   res.redirect("/addbook");

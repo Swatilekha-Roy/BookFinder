@@ -10,6 +10,9 @@ var bookSchema = new mongoose.Schema({
   date: {
     type: String,
   },
+  color: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Post", bookSchema);

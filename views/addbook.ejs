@@ -18,6 +18,7 @@
           required
         />
       </div>
+
       <div class="form-group">
         <label>Author of Book</label>
         <input
@@ -29,18 +30,49 @@
           required
         />
       </div>
-      <div class="form-group">
-        <label>Published Date</label>
-        <input
-          type="text"
-          class="form-control"
-          id="dateid"
-          name="date"
-          placeholder="2015"
-          required
-        />
+
+      <div class="row">
+        <div class="col-12 col-md-7">
+          <div class="form-group">
+            <label>Published Date (yyyy-mm-dd)</label>
+            <div class="input-group date" id="datetimepicker1">
+              <input
+                type="text"
+                class="form-control input-lg"
+                id="dateid"
+                name="date"
+                placeholder="2021-11-09"
+                required
+              />
+              <span class="input-group-addon" style="margin-left: 2%"
+                ><span class="glyphicon glyphicon-calendar"
+                  ><i
+                    class="fa fa-calendar-plus-o fa-2x"
+                    aria-hidden="true"
+                  ></i></span
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <div class="form-group">
+            <label for="myColor" class="form-label"
+              >Mood of the Book (in color)</label
+            >
+            <input
+              type="color"
+              class="form-control form-control-color"
+              id="color"
+              value="#92EDA9"
+              title="Choose a color"
+              name="color"
+            />
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary index_btn">Submit</button>
+
+      <button type="submit" class="btn btn-primary index_btn">Add Book</button>
     </form>
   </div>
 </div>
