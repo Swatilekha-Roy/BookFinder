@@ -40,13 +40,8 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Add Book Page rendering
-app.get("/addbook", (req, res) => {
-  res.render("addbook");
-});
-
-// Add Book Page Form Data Posting
-app.post("/addbook", (req, res) => {
+// Index Page Form Data Posting
+app.post("/index", (req, res) => {
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
@@ -54,7 +49,7 @@ app.post("/addbook", (req, res) => {
     color: req.body.color,
   });
   book.save();
-  res.redirect("/addbook");
+  res.redirect("/");
   console.log(req.body);
 });
 
@@ -70,6 +65,18 @@ app.get("/booklist", (req, res) => {
 // Add Booklist Page Search Query Post
 app.post("/booklist", (req, res) => {
   console.log(req.body.booksearch);
+  let result = Book.posts.aggregate([
+    {
+      $search: {
+        index: "custom",
+        text: {
+          path: ["title", "author"],
+          query: `${req.body.booksearch}`,
+        },
+      },
+    },
+  ]);
+  console.log(result);
   res.redirect("/booklist");
 });
 

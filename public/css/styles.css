@@ -169,6 +169,7 @@ footer {
 /* Form Container */
 .form-container {
     max-width: 500px;
+    margin-top: 5%;
 }
 
 .index_btn {
