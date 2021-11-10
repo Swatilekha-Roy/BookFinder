@@ -26,6 +26,9 @@ app.use(express.static("views"));
 var mongo_username = process.env.MONGO_USERNAME;
 var mongo_password = process.env.MONGO_PASSWORD;
 
+// Declare variable for storing search book result
+var searchbook;
+
 // MongoDB Atlas Connect
 mongoose.connect(
   `mongodb+srv://${mongo_username}:${mongo_password}@cluster0.gwzm7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
@@ -50,33 +53,43 @@ app.post("/index", (req, res) => {
   });
   book.save();
   res.redirect("/");
-  console.log(req.body);
 });
 
 // Booklist Page rendering
 app.get("/booklist", (req, res) => {
+  // Search database for search query
+  Book.aggregate(
+    [
+      {
+        $search: {
+          index: "custom",
+          text: {
+            path: ["title", "author"],
+            query: searchbook,
+          },
+        },
+      },
+    ],
+    (err, book) => {
+      searchbook = book;
+      if (!searchbook) {
+      } else {
+        console.log(searchbook);
+      }
+    }
+  );
+  // Retrieve all book data from Database
   Book.find({}, (err, book) => {
     res.render("booklist", {
       book: book,
+      searchbook: searchbook,
     });
   });
 });
 
 // Add Booklist Page Search Query Post
 app.post("/booklist", (req, res) => {
-  console.log(req.body.booksearch);
-  let result = Book.posts.aggregate([
-    {
-      $search: {
-        index: "custom",
-        text: {
-          path: ["title", "author"],
-          query: `${req.body.booksearch}`,
-        },
-      },
-    },
-  ]);
-  console.log(result);
+  searchbook = req.body.booksearch;
   res.redirect("/booklist");
 });
 
