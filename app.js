@@ -23,11 +23,11 @@ app.use(express.static("public"));
 app.use(express.static("views"));
 
 // Database user ids
-var mongo_username = process.env.MONGO_USERNAME;
-var mongo_password = process.env.MONGO_PASSWORD;
+const mongo_username = process.env.MONGO_USERNAME;
+const mongo_password = process.env.MONGO_PASSWORD;
 
 // Declare variable for storing search book result
-var searchbook;
+var searchbook, searchresult;
 
 // MongoDB Atlas Connect
 mongoose.connect(
@@ -55,8 +55,15 @@ app.post("/index", (req, res) => {
   res.redirect("/");
 });
 
+// Add Booklist Page Search Query Post
+app.post("/booklist", (req, res) => {
+  searchbook = req.body.searchbook;
+  res.redirect("/booklist");
+});
+
 // Booklist Page rendering
 app.get("/booklist", (req, res) => {
+  console.log(searchbook);
   // Search database for search query
   Book.aggregate(
     [
@@ -71,26 +78,36 @@ app.get("/booklist", (req, res) => {
       },
     ],
     (err, book) => {
-      searchbook = book;
-      if (!searchbook) {
+      searchresult = book;
+      if (!searchresult) {
       } else {
-        console.log(searchbook);
+        console.log(searchresult);
       }
-    }
+    },
+    Book.find({}, (err, book) => {
+      res.render("booklist", {
+        book: book,
+        searchresult: searchresult,
+      });
+    })
   );
-  // Retrieve all book data from Database
-  Book.find({}, (err, book) => {
-    res.render("booklist", {
-      book: book,
-      searchbook: searchbook,
-    });
-  });
-});
 
-// Add Booklist Page Search Query Post
-app.post("/booklist", (req, res) => {
-  searchbook = req.body.booksearch;
-  res.redirect("/booklist");
+  // if (searchresult) {
+  //   // Retrieve all book data from Database
+  //   Book.find({}, (err, book) => {
+  //     res.render("booklist", {
+  //       book: book,
+  //       searchresult: searchresult,
+  //     });
+  //   });
+  // } else {
+  //   // Retrieve all book data from Database
+  //   Book.find({}, (err, book) => {
+  //     res.render("booklist", {
+  //       book: book,
+  //     });
+  //   });
+  // }
 });
 
 // Ports

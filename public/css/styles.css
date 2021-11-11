@@ -8,6 +8,7 @@ html {
 
 body {
     font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
 }
 
 
@@ -132,7 +133,7 @@ nav {
 
 /* Footer */
 footer {
-    margin-top: 4.1%;
+    
     height: 57px;
     background-color: rgb(59, 58, 58);
     font-size: 1.2rem;
