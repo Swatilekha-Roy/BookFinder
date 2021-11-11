@@ -22,7 +22,7 @@
               aria-describedby="search-item"
               name="searchbook"
               style="width: 300px; display: inline-block"
-              placeholder="Search From BookFinder Library..."
+              placeholder="Search BookFinder Library..."
               required
             />
             <button
@@ -37,14 +37,16 @@
       </div>
     </div>
 
+    <!-- Search Result -->
     <div class="row">
       <div
         class="col-12 col-md-3 flex-top card book-card"
         style="display: flex; min-width: 320px"
-      >
-        <strong><h3 style="font-weight: 800; font-size: 2.1rem"></h3></strong>
-        <p style="line-height: 30px">
-          Written by
+      > 
+
+      <% if(typeof searchresult !== 'undefined'){ %>
+        <strong><h3 style="font-weight: 800; font-size: 2.1rem"><%= searchresult.title %></h3></strong>
+        <% } %>
           <strong style="font-weight: 800; font-size: 1.2rem"></strong>
           <br />
           Published:

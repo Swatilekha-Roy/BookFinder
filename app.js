@@ -63,7 +63,6 @@ app.post("/booklist", (req, res) => {
 
 // Booklist Page rendering
 app.get("/booklist", (req, res) => {
-  console.log(searchbook);
   // Search database for search query
   Book.aggregate(
     [
@@ -77,37 +76,27 @@ app.get("/booklist", (req, res) => {
         },
       },
     ],
-    (err, book) => {
+    async (err, book) => {
       searchresult = book;
       if (!searchresult) {
+        console.log("Np");
+        Book.find({}, (err, book) => {
+          res.render("booklist", {
+            book: book,
+          });
+        });
       } else {
+        Book.find({}, (err, book) => {
+          res.render("booklist", {
+            book: book,
+            searchresult: searchresult,
+          });
+          console.log("booksearch");
+        });
         console.log(searchresult);
       }
-    },
-    Book.find({}, (err, book) => {
-      res.render("booklist", {
-        book: book,
-        searchresult: searchresult,
-      });
-    })
+    }
   );
-
-  // if (searchresult) {
-  //   // Retrieve all book data from Database
-  //   Book.find({}, (err, book) => {
-  //     res.render("booklist", {
-  //       book: book,
-  //       searchresult: searchresult,
-  //     });
-  //   });
-  // } else {
-  //   // Retrieve all book data from Database
-  //   Book.find({}, (err, book) => {
-  //     res.render("booklist", {
-  //       book: book,
-  //     });
-  //   });
-  // }
 });
 
 // Ports

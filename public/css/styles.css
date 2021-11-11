@@ -200,6 +200,14 @@ label {
     border-radius: 10px;
 }
 
+@media only screen and (max-width: 600px)
+{
+    .book-card {
+        max-width: 300px !important;
+    }
+}
+
+/* Book Search */
 .search_btn {
     background-color: rgb(94, 90, 90);
     font-size: 1.3rem;
