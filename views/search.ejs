@@ -39,17 +39,31 @@
 
     <!-- Search Result -->
     <div class="row">
+      <% searchresult.forEach(function(book){ %>
       <div
         class="col-12 col-md-3 flex-top card book-card"
-        style="display: flex; min-width: 320px"
-      > 
-      <% searchresult.forEach(function(book){ %>
-        <strong><h3 style="font-weight: 800; font-size: 2.1rem"><%= book.title %></h3></strong>
-
-          <strong style="font-weight: 800; font-size: 1.2rem"></strong>
+        style="
+          display: flex;
+          min-width: 320px;
+          -webkit-box-shadow: 2px 5px 10px 6px <%= book.color %>;
+          box-shadow: 2px 5px 10px 6px <%= book.color %>;
+        "
+      >
+        <strong
+          ><h3 style="font-weight: 800; font-size: 2.1rem">
+            <%= book.title %>
+          </h3></strong
+        >
+        <p style="line-height: 30px">
+          Written by
+          <strong style="font-weight: 800; font-size: 1.2rem"
+            ><%= book.author %></strong
+          >
           <br />
           Published:
-          <strong style="font-weight: 800; font-size: 1.2rem"></strong>
+          <strong style="font-weight: 800; font-size: 1.2rem"
+            ><%= book.date %></strong
+          >
         </p>
       </div>
       <% }) %>
