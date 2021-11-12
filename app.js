@@ -58,11 +58,23 @@ app.post("/index", (req, res) => {
 // Add Booklist Page Search Query Post
 app.post("/booklist", (req, res) => {
   searchbook = req.body.searchbook;
-  res.redirect("/booklist");
 });
 
-// Booklist Page rendering
 app.get("/booklist", (req, res) => {
+  Book.find({}, (err, book) => {
+    res.render("booklist", {
+      book: book,
+    });
+    global.book_list = book;
+  });
+});
+
+app.post("/search", (req, res) => {
+  searchbook = req.body.searchbook;
+  res.redirect("/search");
+});
+
+app.get("/search", (req, res) => {
   // Search database for search query
   Book.aggregate(
     [
@@ -76,25 +88,12 @@ app.get("/booklist", (req, res) => {
         },
       },
     ],
-    async (err, book) => {
-      searchresult = book;
-      if (!searchresult) {
-        console.log("Np");
-        Book.find({}, (err, book) => {
-          res.render("booklist", {
-            book: book,
-          });
-        });
-      } else {
-        Book.find({}, (err, book) => {
-          res.render("booklist", {
-            book: book,
-            searchresult: searchresult,
-          });
-          console.log("booksearch");
-        });
-        console.log(searchresult);
-      }
+    (err, s_book) => {
+      searchresult = s_book;
+      res.render("search", {
+        searchresult: searchresult,
+        book: book_list,
+      });
     }
   );
 });
