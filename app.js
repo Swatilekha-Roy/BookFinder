@@ -63,12 +63,14 @@ app.post("/booklist", (req, res) => {
 
 // Render Booklist page
 app.get("/booklist", (req, res) => {
-  Book.find({}, (err, book) => {
-    res.render("booklist", {
-      book: book,
+  Book.find({})
+    .sort("title")
+    .exec((err, book) => {
+      res.render("booklist", {
+        book: book,
+      });
+      global.book_list = book;
     });
-    global.book_list = book;
-  });
 });
 
 // POST request for search query word
