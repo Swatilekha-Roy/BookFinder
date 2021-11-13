@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const ejs = require("ejs");
+const hotpTotpGenerator = require("hotp-totp-generator");
 
 // Fetching the model
 const Book = require("./db/book");
@@ -60,6 +61,7 @@ app.post("/booklist", (req, res) => {
   searchbook = req.body.searchbook;
 });
 
+// Render Booklist page
 app.get("/booklist", (req, res) => {
   Book.find({}, (err, book) => {
     res.render("booklist", {
@@ -69,11 +71,13 @@ app.get("/booklist", (req, res) => {
   });
 });
 
+// POST request for search query word
 app.post("/search", (req, res) => {
   searchbook = req.body.searchbook;
   res.redirect("/search");
 });
 
+// Render Book Search Query Route
 app.get("/search", (req, res) => {
   // Search database for search query
   Book.aggregate(
@@ -96,6 +100,18 @@ app.get("/search", (req, res) => {
       });
     }
   );
+});
+
+// Retrieve TOTP key
+const totp_key = process.env.TOTP_KEY;
+
+// Generate TOTP for one-time use
+var output = hotpTotpGenerator.totp({
+  key: totp_key,
+  X: 120,
+  T0: 0,
+  algorithm: "sha512",
+  digits: 10,
 });
 
 // Ports
