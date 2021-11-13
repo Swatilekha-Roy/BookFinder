@@ -12,7 +12,7 @@ https://book-finder-dpschallenge.herokuapp.com/
 - The app must be running on `localhost:3000` (or your preferred local port) on your system.
 - Open any broswer and type `localhost:3000` and enjoy. :)
 
-## Environment variables
+### Environment variables
 To make sure that the app runs locally, you need to add your config variables to a local `.env` file. Add the following keys and their values there:
 - `PORT`
 - `MONGO_USERNAME`
